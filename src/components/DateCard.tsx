@@ -1,12 +1,16 @@
 interface IDateCard {
-  date: number;
+  monthOfDays: number;
 }
 
-function DateCard({ date }: IDateCard) {
+function DateCard({ monthOfDays }: IDateCard) {
   return (
-    <div key={date} className="h-24 p-2 bg-blue-300">
-      {date + 1}
-    </div>
+    <>
+      {[...Array.from(Array(monthOfDays).keys())].map((date) => (
+        <div key={date} className="h-24 p-2 bg-blue-300">
+          {date + 1}
+        </div>
+      ))}
+    </>
   );
 }
 

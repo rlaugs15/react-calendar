@@ -1,7 +1,9 @@
 import DateCard from "../components/DateCard";
 import { getLastOfMonth } from "../libs";
-import { useRecoilState } from "recoil";
-import { monthAtom } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { dayAtom, monthAtom, yearAtom } from "../atoms";
+import BeforDays from "../components/BeforDays";
+import AfterDays from "../components/AfterDays";
 
 function Home() {
   const [month, setMonth] = useRecoilState(monthAtom);
@@ -12,6 +14,7 @@ function Home() {
   const onafterClick = () => {
     setMonth((prov) => (prov >= 12 ? 1 : prov + 1));
   };
+
   return (
     <div className="p-4">
       <div className="w-full py-3 space-x-3 text-2xl font-semibold text-center bg-blue-400">
@@ -25,9 +28,10 @@ function Home() {
             {day}
           </div>
         ))}
-        {[...Array.from(Array(monthOfDays).keys())].map((date) => (
-          <DateCard key={date} date={date} />
-        ))}
+        <BeforDays />
+
+        <DateCard monthOfDays={monthOfDays} />
+        <AfterDays />
       </main>
     </div>
   );
