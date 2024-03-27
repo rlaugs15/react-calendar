@@ -15,8 +15,6 @@ function AfterDays() {
   let cutAfterArray = [];
   cutAfterArray = [...Array.from(Array(7).keys())];
   const newArray = cutAfterArray.slice(0, 7 - (days + 1));
-  console.log(newArray);
-
   return (
     <>
       {newArray.map((afterDay) => (
